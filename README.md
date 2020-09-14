@@ -45,17 +45,6 @@ const keys = {
 }
 ```
 
-* *Hits*
-```javascript
-// Hit statements
-const Hits = {
-    hitLeftWall: snake[0].x < 0,
-    hitRightWall: snake[0].x > snakeboard.width - 10,
-    hitToptWall: snake[0].y < 0,
-    hitBottomWall: snake[0].y > snakeboard.height - 10
-}
-```
-
 * **document.event()**
 ```javascript
 document.addEventListener("keydown", change_direction);
