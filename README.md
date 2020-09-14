@@ -175,7 +175,8 @@ function main() {
         snake.pop();
       }
   }
-```
+  ```
+  
   * **drawSnake()**
 
   ```javascript
