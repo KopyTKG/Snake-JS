@@ -24,6 +24,13 @@ const keys = {
   s: 83,
   a: 65
 }
+// Hit statements
+const Hits = {
+  hitLeftWall: snake[0].x < 0,
+  hitRightWall: snake[0].x > snakeboard.width - 10,
+  hitToptWall: snake[0].y < 0,
+  hitBottomWall: snake[0].y > snakeboard.height - 10
+}
 // Snake and his body
 let snake = [
   {x: 200, y: 200},
@@ -110,11 +117,7 @@ function has_game_ended() {
   for (let i = 4; i < snake.length; i++) {
     if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true
   }
-  const hitLeftWall = snake[0].x < 0;
-  const hitRightWall = snake[0].x > snakeboard.width - 10;
-  const hitToptWall = snake[0].y < 0;
-  const hitBottomWall = snake[0].y > snakeboard.height - 10;
-  return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall
+  return Hits.hitLeftWall || Hits.hitRightWall || Hits.hitToptWall || Hits.hitBottomWall
 }
 
 function random_food(max) {
