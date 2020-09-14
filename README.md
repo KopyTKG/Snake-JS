@@ -3,19 +3,19 @@
 ***
 ### Created By Kopy.TKG
 ***
-**Needed**
+### **Needed**
 - **bootstrap**
 
-
-**Included**
+***
+### **Included**
 - Index.html
 - bootstrap
 - tether
 - js -> jquery.js
 - js.js //*Adding event listener*
 - game.script.js //*main game logic*
-
-**Code**
+***
+### **Code**
 
 * *Colors*
 ```javascript
@@ -49,7 +49,8 @@ const keys = {
 ```javascript
 document.addEventListener("keydown", change_direction);
 ```
- * **change_direction()**
+
+  * **change_direction()**
   ```javascript
   function change_direction(event) {
   // Prevent the snake from reversing
