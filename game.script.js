@@ -2,7 +2,14 @@ const snakeboard = document.getElementById("snakeboard");
 const snakeboard_ctx = snakeboard.getContext("2d");
 
 document.addEventListener("keydown", change_direction);
-
+// Snake and his body
+let snake = [
+  {x: 200, y: 200},
+  {x: 190, y: 200},
+  {x: 180, y: 200},
+  {x: 170, y: 200},
+  {x: 160, y: 200}
+]
 // Colors used in game
 const colors = {
   board_border: 'rgb(0,0,0)', // Black
@@ -31,14 +38,6 @@ const Hits = {
   hitToptWall: snake[0].y < 0,
   hitBottomWall: snake[0].y > snakeboard.height - 10
 }
-// Snake and his body
-let snake = [
-  {x: 200, y: 200},
-  {x: 190, y: 200},
-  {x: 180, y: 200},
-  {x: 170, y: 200},
-  {x: 160, y: 200}
-]
 // Score
 const adder = 10;
 let score = 0;
