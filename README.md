@@ -175,8 +175,8 @@ function main() {
   }
   ```
 
-    * **drawSnakePart()**
-    ```javascript
+  * **drawSnakePart()**
+  ```javascript
     function drawSnakePart(snakePart) {
     //Color settings
         snakeboard_ctx.fillStyle = colors.snake_col;
@@ -185,4 +185,4 @@ function main() {
         snakeboard_ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
         snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
     }
-    ```
+  ```
