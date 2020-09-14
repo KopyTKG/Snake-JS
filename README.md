@@ -129,7 +129,11 @@ function main() {
         if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true
       }
     // Wall hit check
-      return Hits.hitLeftWall || Hits.hitRightWall || Hits.hitToptWall || Hits.hitBottomWall
+      const hitLeftWall = snake[0].x < 0;
+      const hitRightWall = snake[0].x > snakeboard.width - 10;
+      const hitToptWall = snake[0].y < 0;
+      const hitBottomWall = snake[0].y > snakeboard.height - 10;
+      return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall
   }
   ```
 
