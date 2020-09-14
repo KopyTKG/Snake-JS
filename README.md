@@ -55,12 +55,16 @@ document.addEventListener("keydown", change_direction);
   function change_direction(event) {
   // Prevent the snake from reversing
       if (changing_direction) return;
+  // direction change
       changing_direction = true;
+  // Get value of the key
       const keyPressed = event.keyCode;
+    // direction of movement
       const goingUp = dy === -10;
       const goingDown = dy === 10;
       const goingRight = dx === 10;
       const goingLeft = dx === -10;
+    // Direction check
       if (keyPressed === keys.left && !goingRight || keyPressed === keys.a && !goingRight) {
         dx = -10;
         dy = 0;
