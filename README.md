@@ -8,9 +8,8 @@
 
 ***
 ### **Included**
-- Index.html
+- index.html
 - bootstrap
-- tether
 - js -> jquery.js
 - js.js //*Adding event listener*
 - game.script.js //*main game logic*
