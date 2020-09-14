@@ -18,7 +18,6 @@
 **Code**
 
 * *Colors*
-
 ```javascript
 //Colors Used in the game
 const colors = {
@@ -32,7 +31,6 @@ const colors = {
 ```
 
 * *keys*
-
 ```javascript
 // Keys used for playing
 const keys = {
@@ -48,13 +46,10 @@ const keys = {
 ```
 
 * **document.event()**
-
 ```javascript
 document.addEventListener("keydown", change_direction);
 ```
-
   * **change_direction()**
-
   ```javascript
   function change_direction(event) {
   // Prevent the snake from reversing
@@ -85,7 +80,6 @@ document.addEventListener("keydown", change_direction);
   ```
 
 * **main()**
-
 ```javascript
 // main function called repeatedly to keep the game running
 function main() {
@@ -112,7 +106,6 @@ function main() {
 * ***Main calls***
 
   * **has_game_ended()**
-
   ```javascript
   function has_game_ended() {
     // Self hit check
@@ -129,7 +122,6 @@ function main() {
   ```
 
   * **clear_board()**
-
   ```javascript
   function clear_board() {
     //Color setting
@@ -142,7 +134,6 @@ function main() {
   ```
 
   * **drawFood()**
-
   ```javascript
   function drawFood() {
     //Color settings
@@ -155,7 +146,6 @@ function main() {
   ```
 
   * **move_snake()**
-
   ```javascript
   function move_snake() {
     // Create the new Snake's head
@@ -176,9 +166,8 @@ function main() {
       }
   }
   ```
-  
-  * **drawSnake()**
 
+  * **drawSnake()**
   ```javascript
   function drawSnake() {
     // Draw each part
@@ -187,7 +176,6 @@ function main() {
   ```
 
     * **drawSnakePart()**
-
     ```javascript
     function drawSnakePart(snakePart) {
     //Color settings
