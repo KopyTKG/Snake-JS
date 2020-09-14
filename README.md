@@ -49,7 +49,7 @@ const keys = {
 ```javascript
 document.addEventListener("keydown", change_direction);
 ```
-  * **change_direction()**
+ * **change_direction()**
   ```javascript
   function change_direction(event) {
   // Prevent the snake from reversing
