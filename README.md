@@ -49,7 +49,7 @@ const keys = {
 ```javascript
 document.addEventListener("keydown", change_direction);
 ```
-
+* #### ***document.event() calls***
   * **change_direction()**
   ```javascript
   function change_direction(event) {
@@ -104,7 +104,7 @@ function main() {
 }
 ```
 
-* ***Main calls***
+* #### ***Main calls***
 
   * **has_game_ended()**
   ```javascript
