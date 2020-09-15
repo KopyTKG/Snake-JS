@@ -14,7 +14,7 @@
       }
     </style>
   </head>
-  <body>
+  <body style="background: rgb(120,120,120);" onload="Load()">
   <div class="row" style="margin:0;">
     <div class="col-md-3"></div>
     <div class="col-md-6">
@@ -26,29 +26,68 @@
   </div>
   <div class="row" style="margin:0;">
     <div class="col-md-3">
-      <div class="alert alert-warning" role="alert">
-        <center>
-          Ovládání <br>
-          <strong>W</strong> <br>
-          <strong>A S D</strong> <br>
-          nebo <br>
-          <strong>↑</strong> <br>
-          <strong>← ↓ →</strong>
-        </center>
+      <div class="row">
+        <div class="col-md-10">
+          <div class="alert alert-warning" role="alert">
+            <center>
+              <strong> Ovládání </strong>
+              <hr>
+              <strong>W</strong> <br>
+              <strong>A S D</strong> <br>
+              nebo <br>
+              <strong>↑</strong> <br>
+              <strong>← ↓ →</strong>
+            </center>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-success"onclick="main()" style="z-index:10;">Start</button> <br><br>
+          <button type="button" class="btn btn-danger"onclick="Reload()" style="z-index:10;">Restart</button>
+        </div>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" style="z-index:1;">
     <center>
       <canvas id="snakeboard" width="400" height="400"></canvas>
     </center>
     </div>
+    <div class="col-md-3">
+      <div class="alert alert-primary" role="alert">
+          <center>
+            <strong> Nápověda </strong>
+            <hr>
+            <div style="background: rgb(30,255,30); border-color: rgb(12,12,12); border-width: 4px; border-style: solid; width: 30px; height: 30px;">
+              &nbsp;
+            </div>
+            <strong>• Jídlo</strong>
+            <div style="background: rgb(255,30,30); border-color: rgb(0,0,0); border-width: 4px; border-style: solid; width: 30px; height: 30px;">
+              &nbsp;
+            </div>
+            <strong>• Zeď</strong>
+            <div style="background: rgb(255,0,255); border-color: rgb(12,12,12); border-width: 4px; border-style: solid; width: 30px; height: 30px;">
+              &nbsp;
+            </div>
+            <strong>• Tělo hada</strong>
+          </center>
+      </div>
+    </div>
   </div>
   <div id="Lose" class="alert alert-danger" role="alert" style="visibility:hidden">
     <center>
-      <strong>Konec</strong>. Pro další hru zmáčkni <strong>F5</strong>.
+      <strong>Konec</strong>. Pro další hru zmáčkni <strong>F5</strong> nebo tlačítko <strong>Restart</strong>.
     </center>
   </div>
     <script src="js.js"></script>
     <script src="game.script.js"></script>
+    <script>
+    function Load() {
+      clear_board();
+      drawFood();
+      drawSnake();
+    }
+      function Reload() {
+        location.reload();
+      }
+    </script>
   </body>
 </html>

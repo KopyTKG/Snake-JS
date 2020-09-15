@@ -49,7 +49,6 @@ let dx = 10;
 let dy = 0;
 let walls = gen_walls();
 // Start game
-main();
 gen_food();
 // main function called repeatedly to keep the game running
 function main() {
