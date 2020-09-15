@@ -140,6 +140,10 @@ function main() {
       for (let i = 4; i < snake.length; i++) {
         if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true
       }
+    // Checks for contact with wall
+      for (var i = 0; i < walls.length; i++) {
+        if (snake[0].x === walls[i][0] && snake[0].y === walls[i][1]) return true
+      }
     // Wall hit check
       const hitLeftWall = snake[0].x < 0;
       const hitRightWall = snake[0].x > snakeboard.width - 10;
