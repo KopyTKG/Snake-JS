@@ -34,8 +34,9 @@ const keys = {
   a: 65
 }
 // Score
-const adder = 10;
+const adder = 1;
 let score = 0;
+let lastScore = 0;
 // True if changing direction
 let changing_direction = false;
 /* --- Food ---*/
@@ -47,7 +48,7 @@ let dx = 10;
 // Vertical velocity
 let dy = 0;
 
-const walls = gen_walls();
+let walls = gen_walls();
 // Start game
 main();
 gen_food();
@@ -59,6 +60,7 @@ function main() {
     return;
   } else {
     changing_direction = false;
+    walls.push(gen_walls());
     setTimeout(function onTick() {
       clear_board();
       drawFood();
@@ -105,12 +107,12 @@ function drawFood() {
 }
 
 function gen_walls() {
-  walls_array = [];
-  for (var i = 0; i < 10; i++) {
-    cords = [random(snakeboard.width - 10), random(snakeboard.height - 10)];
-    walls_array.push(cords);
-  }
-  return walls_array;
+    walls_array = [];
+    for (var i = 0; i < 1; i++) {
+      cords = [random(snakeboard.width - 10), random(snakeboard.height - 10)];
+      walls_array.push(cords);
+    }
+    return walls_array;
 }
 
 // Draw one snake part
@@ -145,8 +147,8 @@ function random(max) {
 }
 
 function gen_food() {
-  food_x = random(snakeboard.width - 10);
-  food_y = random(snakeboard.height - 10);
+  food_x = random(snakeboard.width - 20);
+  food_y = random(snakeboard.height - 20);
   // if the new food location is where the snake currently is, generate a new food location
   snake.forEach(function has_snake_eaten_food(part) {
     const has_eaten = part.x == food_x && part.y == food_y;

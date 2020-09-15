@@ -90,7 +90,7 @@ document.addEventListener("keydown", change_direction);
   ```
 * **Walls generation**
 ```javascript
-const walls = gen_walls(); // generate array of location for 10 walls
+let walls = gen_walls(); // generate array of location for 10 walls
 ```
   * **gen_walls()**
   ```javascript
@@ -189,7 +189,7 @@ function main() {
       snake.unshift(head);
       const has_eaten_food = snake[0].x === food_x && snake[0].y === food_y;
       if (has_eaten_food) {
-        score += adder; // adder is const on top = 10
+        score += adder; // adder is const on top = 1
         document.getElementById('score').innerHTML = score;
       // Generate new food location
         gen_food();
