@@ -47,7 +47,6 @@ let food_y;
 let dx = 10;
 // Vertical velocity
 let dy = 0;
-
 let walls = gen_walls();
 // Start game
 main();
@@ -60,7 +59,7 @@ function main() {
     return;
   } else {
     changing_direction = false;
-    walls.push(gen_walls());
+    if(walls.length == score + 1) walls.push(gen_walls());
     setTimeout(function onTick() {
       clear_board();
       drawFood();
@@ -107,12 +106,8 @@ function drawFood() {
 }
 
 function gen_walls() {
-    walls_array = [];
-    for (var i = 0; i < 1; i++) {
-      cords = [random(snakeboard.width - 10), random(snakeboard.height - 10)];
-      walls_array.push(cords);
-    }
-    return walls_array;
+  cords = [random(snakeboard.width - 10), random(snakeboard.height - 10)];
+  return cords;
 }
 
 // Draw one snake part
