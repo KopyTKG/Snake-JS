@@ -20,12 +20,18 @@
 ```javascript
 //Colors Used in the game
 const colors = {
-  board_border: 'rgb(0,0,0)', // Black
-  board_background: 'rgb(255,255,255)', // White
-  snake_col: 'rgb(255,0,255)', // Purple
-  snake_border: 'rgb(230,0,230)', // DarkPurple
-  food_background: 'rgb(30,255,30)', // LightGreen
-  food_border: 'rgb(0,230,0)'// DarkGreen
+// border
+    board_border: 'rgb(0,0,0)',
+    board_background: 'rgb(255,255,255)',
+// snake
+    snake_col: 'rgb(255,0,255)',
+    snake_border: 'rgb(230,0,230)',
+// food
+    food_background: 'rgb(30,255,30)',
+    food_border: 'rgb(0,230,0)',
+// walls
+    wall_background: 'rgb(255,30,30)',
+    wall_border: 'rgb(0,0,0)'
 }
 ```
 
@@ -82,7 +88,21 @@ document.addEventListener("keydown", change_direction);
       }
   }
   ```
-
+* **Walls generation**
+```javascript
+const walls = gen_walls(); // generate array of location for 10 walls
+```
+  * **gen_walls()**
+  ```javascript
+  function gen_walls() {
+      walls_array = [];
+      for (var i = 0; i < 10; i++) {
+        cords = [random(snakeboard.width - 10), random(snakeboard.height - 10)];
+        walls_array.push(cords);
+      }
+      return walls_array;
+  }
+  ```
 * **main()**
 ```javascript
 // main function called repeatedly to keep the game running
@@ -100,6 +120,10 @@ function main() {
         drawFood();
         move_snake();
         drawSnake();
+        // Draw all walls
+        for (var i = 0; i < walls.length; i++) {
+          drawWalls(walls[i][0], walls[i][1]);
+        }
         // Repeat
         main();
       }, 100);
@@ -189,4 +213,13 @@ function main() {
         snakeboard_ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
         snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
     }
+  ```
+  * **drawWalls()**
+  ```javascript
+  function drawWalls(wall_X, wall_Y) {
+      snakeboard_ctx.fillStyle = colors.wall_background;
+      snakeboard_ctx.strokestyle = colors.wall_border;
+      snakeboard_ctx.fillRect(wall_X, wall_Y, 10, 10);
+      snakeboard_ctx.strokeRect(wall_X, wall_Y, 10, 10);
+  }
   ```
