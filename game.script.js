@@ -9,7 +9,7 @@ let snake = [
   {x: 180, y: 200},
   {x: 170, y: 200},
   {x: 160, y: 200}
-]
+];
 // Colors used in game
 const colors = {
   board_border: 'rgb(0,0,0)', // Black
@@ -20,7 +20,7 @@ const colors = {
   food_border: 'rgb(0,230,0)',// DarkGreen
   wall_background: 'rgb(255,30,30)', // LightGreen
   wall_border: 'rgb(0,0,0)'// DarkGreen
-}
+};
 
 // Keys used for playing
 const keys = {
@@ -32,7 +32,7 @@ const keys = {
   d: 68,
   s: 83,
   a: 65
-}
+};
 // Score
 const adder = 1;
 let score = 0;
@@ -94,7 +94,7 @@ function drawWalls(wall_X, wall_Y) {
 // Draw the snake on the canvas
 function drawSnake() {
   // Draw each part
-  snake.forEach(drawSnakePart)
+  snake.forEach(drawSnakePart);
 }
 
 function drawFood() {
@@ -105,7 +105,7 @@ function drawFood() {
 }
 
 function gen_walls() {
-  cords = [random(snakeboard.width - 10), random(snakeboard.height - 10)];
+  cords = [random(10,snakeboard.width - 10), random(10,snakeboard.height - 10)];
   return cords;
 }
 
@@ -124,30 +124,36 @@ function drawSnakePart(snakePart) {
 
 function has_game_ended() {
   for (let i = 4; i < snake.length; i++) {
-    if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true
+    if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true;
   }
   for (var i = 0; i < walls.length; i++) {
-    if (snake[0].x === walls[i][0] && snake[0].y === walls[i][1]) return true
+    if (snake[0].x === walls[i][0] && snake[0].y === walls[i][1]) return true;
   }
   const hitLeftWall = snake[0].x < 0;
   const hitRightWall = snake[0].x > snakeboard.width - 10;
   const hitToptWall = snake[0].y < 0;
   const hitBottomWall = snake[0].y > snakeboard.height - 10;
-  return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall
+  return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall;
 }
 
-function random(max) {
-  return Math.round((Math.random() * (max-0) + 0) / 10) * 10;
+function random(min, max) {
+  return Math.round((Math.random() * (max-min) + min) / 10) * 10;
 }
 
 function gen_food() {
-  food_x = random(snakeboard.width - 20);
-  food_y = random(snakeboard.height - 20);
+  food_x = random(10,snakeboard.width - 20);
+  food_y = random(10,snakeboard.height - 20);
+  food_cords = [food_x, food_y];
+  if(!walls.includes(food_cords)) {
+    snake.forEach(function has_snake_eaten_food(part) {
+      const has_eaten = part.x == food_x && part.y == food_y;
+      if (has_eaten) gen_food();
+    });
+  } else {
+    gen_food();
+  }
   // if the new food location is where the snake currently is, generate a new food location
-  snake.forEach(function has_snake_eaten_food(part) {
-    const has_eaten = part.x == food_x && part.y == food_y;
-    if (has_eaten) gen_food();
-  });
+
 }
 
 function change_direction(event) {
