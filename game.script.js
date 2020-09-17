@@ -141,10 +141,12 @@ function random(min, max) {
 }
 
 function gen_food() {
-  food_x = random(10,snakeboard.width - 20);
-  food_y = random(10,snakeboard.height - 20);
-  food_cords = [food_x, food_y];
+  let temp_food_x = random(10,snakeboard.width - 20);
+  let temp_food_y = random(10,snakeboard.height - 20);
+  food_cords = [temp_food_x, temp_food_y];
   if(!walls.includes(food_cords)) {
+    food_x = temp_food_x;
+    food_y = temp_food_y;
     snake.forEach(function has_snake_eaten_food(part) {
       const has_eaten = part.x == food_x && part.y == food_y;
       if (has_eaten) gen_food();
