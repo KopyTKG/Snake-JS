@@ -163,8 +163,6 @@ function gen_food() {
   } else {
     gen_food();
   }
-  // if the new food location is where the snake currently is, generate a new food location
-
 }
 
 function change_direction(event) {
