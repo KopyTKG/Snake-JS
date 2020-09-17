@@ -105,7 +105,9 @@ function drawFood() {
 }
 
 function gen_walls() {
-  cords = [random(10,snakeboard.width - 10), random(10,snakeboard.height - 10)];
+  let wall_gen_x = random(10,snakeboard.width - 10);
+  let wall_gen_y = random(10,snakeboard.width - 10);
+  cords = [wall_gen_x,wall_gen_y];
   return cords;
 }
 
