@@ -15,9 +15,9 @@ const colors = {
   board_border: 'rgb(0,0,0)', // Black
   board_background: 'rgb(255,255,255)', // White
   snake_col: 'rgb(255,0,255)', // Purple
-  snake_border: 'rgb(230,0,230)', // DarkPurple
+  snake_border: 'rgb(0,0,0)', // DarkPurple
   food_background: 'rgb(30,255,30)', // LightGreen
-  food_border: 'rgb(0,230,0)',// DarkGreen
+  food_border: 'rgb(0,0,0)',// DarkGreen
   wall_background: 'rgb(255,30,30)', // LightGreen
   wall_border: 'rgb(0,0,0)'// DarkGreen
 };
