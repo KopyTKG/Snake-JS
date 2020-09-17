@@ -141,10 +141,19 @@ function random(min, max) {
 }
 
 function gen_food() {
+  let inArray = false;
   let temp_food_x = random(10,snakeboard.width - 20);
   let temp_food_y = random(10,snakeboard.height - 20);
-  food_cords = [temp_food_x, temp_food_y];
-  if(!walls.includes(food_cords)) {
+  for (var position = 0; position < walls.length; position++) {
+    if(inArray) break;
+    if(walls[position][0] == temp_food_x && walls[position][1] == temp_food_y) {
+       inArray = true;
+       break;
+    } else {
+      inArray = false;
+    }
+  }
+  if(!inArray) {
     food_x = temp_food_x;
     food_y = temp_food_y;
     snake.forEach(function has_snake_eaten_food(part) {
