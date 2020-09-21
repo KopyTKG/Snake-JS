@@ -4,7 +4,7 @@ const snakeboard_ctx = snakeboard.getContext("2d");
 document.addEventListener("keydown", change_direction);
 // Snake and his body
 let snake = [
-  {x: 200, y: 200}
+  {x: 10, y: 10}
 ];
 // Colors used in game
 const colors = {
@@ -32,7 +32,6 @@ const keys = {
 // Score
 let adder = parseInt(document.getElementById("scoreAdder").value);
 let score = 0;
-let lastScore = 0;
 // True if changing direction
 let changing_direction = false;
 /* --- Food ---*/
