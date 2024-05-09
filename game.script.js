@@ -1,10 +1,14 @@
 const snakeboard = document.getElementById("snakeboard");
 const snakeboard_ctx = snakeboard.getContext("2d");
 
+/* --- Game --- */
+const blockSize = 30;
+
+
 document.addEventListener("keydown", change_direction);
 // Snake and his body
 let snake = [
-  {x: 10, y: 10}
+  {x: blockSize, y: blockSize},
 ];
 // Colors used in game
 const colors = {
@@ -29,6 +33,15 @@ const keys = {
   s: 83,
   a: 65
 };
+
+function drawBlock(x, y, fill, stroke) {
+  snakeboard_ctx.fillStyle = fill;
+  snakeboard_ctx.strokestyle = stroke;
+  snakeboard_ctx.fillRect(x, y, blockSize, blockSize);
+  snakeboard_ctx.strokeRect(x, y, blockSize, blockSize);
+}
+
+
 // Score
 let adder = parseInt(document.getElementById("scoreAdder").value);
 let score = 0;
@@ -39,7 +52,7 @@ let food_x;
 let food_y;
 /* --- Movement --- */
 // Horizontal velocity
-let dx = 10;
+let dx = blockSize * 1;
 // Vertical velocity
 let dy = 0;
 let walls = gen_walls();
@@ -63,13 +76,12 @@ function main() {
     }
     setTimeout(function onTick() {
       clear_board();
-      drawFood();
-      move_snake();
-      drawSnake();
       for (var i = 0; i < walls.length; i++) {
-        drawWalls(walls[i][0], walls[i][1]);
+        drawBlock(walls[i][0], walls[i][1], colors.wall_background, colors.wall_border);
       }
-      // Repeat
+      drawBlock(food_x, food_y, colors.food_background, colors.food_border);
+      snake.forEach(part => drawBlock(part.x, part.y, colors.snake_col, colors.snake_border));
+      move_snake();
       main();
     }, speed);
   }
@@ -83,42 +95,16 @@ function clear_board() {
   snakeboard_ctx.strokeRect(0, 0, snakeboard.width, snakeboard.height);
 }
 
-// draw a wall inside of the canvas
-function drawWalls(wall_X, wall_Y) {
-  snakeboard_ctx.fillStyle = colors.wall_background;
-  snakeboard_ctx.strokestyle = colors.wall_border;
-  snakeboard_ctx.fillRect(wall_X, wall_Y, 10, 10);
-  snakeboard_ctx.strokeRect(wall_X, wall_Y, 10, 10);
-}
-// Draw the snake on the canvas
-function drawSnake() {
-  // Draw each part
-  snake.forEach(drawSnakePart);
-}
-
-// draw a food inside of the canvas
-function drawFood() {
-  snakeboard_ctx.fillStyle = colors.food_background;
-  snakeboard_ctx.strokestyle = colors.food_border;
-  snakeboard_ctx.fillRect(food_x, food_y, 10, 10);
-  snakeboard_ctx.strokeRect(food_x, food_y, 10, 10);
-}
 
 // Generate a wall inside of the canvas
 function gen_walls() {
-  let wall_gen_x = random(10,snakeboard.width - 10);
-  let wall_gen_y = random(10,snakeboard.width - 10);
+  let wall_gen_x = random(blockSize,snakeboard.width - blockSize);
+  let wall_gen_y = random(blockSize,snakeboard.width - blockSize);
   cords = [wall_gen_x,wall_gen_y];
   return cords;
 }
 
-// Draw one snake part
-function drawSnakePart(snakePart) {
-  snakeboard_ctx.fillStyle = colors.snake_col;
-  snakeboard_ctx.strokestyle = colors.snake_border;
-  snakeboard_ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
-  snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
-}
+
 
 
 function has_game_ended() {
@@ -129,20 +115,20 @@ function has_game_ended() {
     if (snake[0].x === walls[i][0] && snake[0].y === walls[i][1]) return true;
   }
   const hitLeftWall = snake[0].x < 0;
-  const hitRightWall = snake[0].x > snakeboard.width - 10;
+  const hitRightWall = snake[0].x > snakeboard.width - blockSize;
   const hitToptWall = snake[0].y < 0;
-  const hitBottomWall = snake[0].y > snakeboard.height - 10;
+  const hitBottomWall = snake[0].y > snakeboard.height - blockSize;
   return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall;
 }
 
 function random(min, max) {
-  return Math.round((Math.random() * (max-min) + min) / 10) * 10;
+  return Math.round((Math.random() * (max-min) + min) / blockSize) * blockSize;
 }
 
 function gen_food() {
   let inArray = false;
-  let temp_food_x = random(10,snakeboard.width - 20);
-  let temp_food_y = random(10,snakeboard.height - 20);
+  let temp_food_x = random(blockSize,snakeboard.width - blockSize);
+  let temp_food_y = random(blockSize,snakeboard.height - blockSize);
   for (var position = 0; position < walls.length; position++) {
     if(inArray) break;
     if(walls[position][0] == temp_food_x && walls[position][1] == temp_food_y) {
@@ -169,25 +155,25 @@ function change_direction(event) {
   if (changing_direction) return;
   changing_direction = true;
   const keyPressed = event.keyCode;
-  const goingUp = dy === -10;
-  const goingDown = dy === 10;
-  const goingRight = dx === 10;
-  const goingLeft = dx === -10;
+  const goingUp = dy === -blockSize;
+  const goingDown = dy === blockSize;
+  const goingRight = dx === blockSize;
+  const goingLeft = dx === -blockSize;
   if (keyPressed === keys.left && !goingRight || keyPressed === keys.a && !goingRight) {
-    dx = -10;
+    dx = -blockSize;
     dy = 0;
   }
   if (keyPressed === keys.up && !goingDown || keyPressed === keys.w && !goingDown) {
     dx = 0;
-    dy = -10;
+    dy = -blockSize;
   }
   if (keyPressed === keys.right && !goingLeft || keyPressed === keys.d && !goingLeft) {
-    dx = 10;
+    dx = blockSize;
     dy = 0;
   }
   if (keyPressed === keys.down && !goingUp || keyPressed === keys.s && !goingUp) {
     dx = 0;
-    dy = 10;
+    dy = blockSize;
   }
 }
 
@@ -208,4 +194,8 @@ function move_snake() {
   } else {
     snake.pop();
   }
+}
+
+function prepBoard() {
+  drawBlock(0, 0, colors.snake_col, colors.snake_border);
 }
